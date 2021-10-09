@@ -30,7 +30,7 @@ int main(void) {
 
     // set options
 
-    curl_easy_setopt(curl, CURLOPT_URL, "http://www.brainjar.com/java/host/test.html"); // opens url
+    curl_easy_setopt(curl, CURLOPT_URL, "http://www.brainjar.com/java/host/test.html"); // sets url
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, got_data); // sets function to print data
 
     // perform action
