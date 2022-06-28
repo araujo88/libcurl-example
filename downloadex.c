@@ -1,13 +1,13 @@
 // Networking example in C using libcurl library
-#include "C:\curl-7.79.1-win64-mingw\include\curl\curl.h" // windows
-//#include <curl/curl.h> // unix
+//#include "C:\curl-7.79.1-win64-mingw\include\curl\curl.h" // windows
+#include <curl/curl.h> // unix
 #include <stdio.h>
 #include <stdlib.h>
 
 size_t got_data(char *buffer, size_t itemsize, size_t nitems, void *ignorethis) {
     size_t bytes = itemsize * nitems;
     int linenumber = 1;
-    printf("New chunk (%u bytes)\n", bytes);
+    printf("New chunk (%lu bytes)\n", bytes);
     printf("%d:\t", linenumber);
     for (int i = 0; i < bytes; i++) {
         printf("%c", buffer[i]);
@@ -20,7 +20,7 @@ size_t got_data(char *buffer, size_t itemsize, size_t nitems, void *ignorethis) 
     return bytes;
 }
 
-int main(void) {
+int main(int argc, char *argv[]) {
     CURL *curl = curl_easy_init(); // initialize Curl pointer
 
     if (!curl) {
@@ -30,7 +30,8 @@ int main(void) {
 
     // set options
 
-    curl_easy_setopt(curl, CURLOPT_URL, "http://www.brainjar.com/java/host/test.html"); // sets url
+    curl_easy_setopt(curl, CURLOPT_URL, argv[1]); // sets url
+    //curl_easy_setopt(curl, CURLOPT_URL, "http://www.brainjar.com/java/host/test.html"); // sets url
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, got_data); // sets function to print data
 
     // perform action

@@ -1,4 +1,4 @@
-CC=clang
+CC=gcc
 CFLAGS=-g -Wall
 
 BIN=downloadex
@@ -8,5 +8,5 @@ all: $(BIN)
 %: %.c
 	$(CC) $(CFLAGS) $< -o $@ -lcurl
 
-clean
+clean:
 	$(RM) -rf #(BIN) *.dSYM
